@@ -39,9 +39,8 @@ export default function Header() {
                             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                         </Link>
                     </li>
-                    <li className="p-2 px-8 border-2 border-black rounded-lg hover:bg-gray-600 hover:text-white hover:border-transparent transition duration-300">
-                        <Link href="/auth">Sign In</Link>
-                    </li>
+                        <Link className="p-2 px-8 border-2 border-black rounded-lg hover:bg-gray-600 hover:text-white hover:border-transparent transition duration-300" href="/auth/login">Sign In</Link>
+                        <Link className="p-2 px-8 text-white bg-blue-600 rounded-lg hover:bg-blue-800  transition duration-300" href="/auth/register">Sign Up</Link>
                 </ul>
                 {/* Mobile side pannel */}
                 <div className="fixed inset-0 z-20 md:hidden" style={{pointerEvents: open ? 'auto' : 'none'}}>
@@ -57,6 +56,7 @@ export default function Header() {
                         <Link href="/about" onClick={() => setOpen(false)}>About</Link>
                         <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
                         <Link href="/auth" onClick={() => setOpen(false)} className="border-2 border-black rounded-lg px-4 py-2 text-center">Sign In</Link>
+                        <Link href="/auth/register" onClick={() => setOpen(false)} className="p-2 px-8 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800  transition duration-300" >Sign Up</Link>
                     </nav>
                 </div>
             </div>

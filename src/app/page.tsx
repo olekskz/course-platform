@@ -64,8 +64,8 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-row items-center justify-around mt-10 md:mt-20 gap-6">
-          <button className="py-3 border-2 rounded-xl px-7 hover:bg-gray-500 hover:text-white transition-colors">Join Now</button>
-          <button className="py-3 border-2 rounded-xl px-7 hover:bg-gray-500 hover:text-white transition-colors">Learn More</button>
+          <button className="py-3 border-2 rounded-xl px-7 hover:bg-gray-500 hover:text-white cursor-pointer transition-colors">Join Now</button>
+          <button className="py-3 border-2 rounded-xl px-7 hover:bg-gray-500 hover:text-white cursor-pointer transition-colors">Learn More</button>
         </div>
       </div>
       <Footer />
