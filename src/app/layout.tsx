@@ -1,5 +1,7 @@
+'use client'
 import "../styles/globals.css";
-
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,7 +17,9 @@ export default function RootLayout({
         <link rel="icon" href="/assets/favicon.ico" />
         </head>
       <body>
-        {children}
+        <Provider store={store}>
+          {children}
+        </Provider>
       </body>
     </html>
   );
