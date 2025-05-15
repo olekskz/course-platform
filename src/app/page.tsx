@@ -1,10 +1,11 @@
-import Header from "../components/header";
+
+import Link from "next/link";
 import Footer from "../components/footer";
 import Image from "next/image";
+
 export default function Home() {
   return (
     <>
-      <Header />
       <div className="flex flex-col items-center px-2">
         <div className="w-full flex flex-col items-center justify-center px-4 py-12 mt-15 mb-10 max-w-2xl mx-auto">
           <h1 className="text-center text-3xl md:text-5xl font-extrabold mb-4 text-gray-900">
@@ -13,9 +14,9 @@ export default function Home() {
           <h2 className="text-center text-lg md:text-2xl mb-6 text-gray-700">
             Explore a variety of fresh topics and start learning new skills
           </h2>
-          <button className="bg-blue-500 text-white py-3 px-6 rounded-l text-lg font-semibold hover:bg-blue-600 transition-all duration-200 cursor-pointer">
+          <Link href="/courses" className="bg-blue-500 text-white py-3 px-6 rounded-l text-lg font-semibold hover:bg-blue-600 transition-all duration-200 cursor-pointer" >
             Browse Courses
-          </button>
+          </Link>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-20 mt-8 md:mt-10 w-full max-w-4xl">
           <div className="flex flex-col items-center">

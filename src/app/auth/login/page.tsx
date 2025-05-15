@@ -1,30 +1,47 @@
-import Header from "../../../components/header";
+'use client'
 import Footer from "../../../components/footer";
 import Image from "next/image";
+import { useState } from "react";
+import { useUserLogin } from "@/hooks/useUser";
 export default function Login() {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+
+    const { loginUser, loading, error } = useUserLogin();
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        await loginUser({ email, password });
+    };
+
     return (
         <>
-            <Header />
             <div className="flex flex-row items-center justify-center min-h-screen">
                 <div className="hidden md:flex w-1/2 justify-center">
                     <Image src="/assets/deepimg-1746723654547-removebg-preview.png" width={500} height={300} alt="Login page" priority={false} />
                 </div>
-                <form className="flex flex-col items-center justify-center w-full md:w-1/2 h-screen">
+                <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center w-full md:w-1/2 h-screen">
                     <h1 className="text-4xl font-bold text-center">Log in to continue your </h1>
                     <h1 className="text-4xl font-bold text-center">learning journey</h1>
                     <div className="flex flex-col items-center mt-4 w-full max-w-xs">
+                        {error && <div className="w-full p-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">{error.message || "An error occurred during login"}</div>}
                         <input
                             type="email"
                             placeholder="Email"
                             className="p-2 border border-gray-300 rounded mb-4 w-full"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
                             placeholder="Password"
                             className="p-2 border border-gray-300 rounded mb-4 w-full"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <button className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-700 cursor-pointer transition duration-200">Sign Up</button>
-                        <p className="mt-4 text-gray-600">Don't have an account? <a href="/auth/signup" className="text-blue-500 hover:underline">Sign Up</a></p>
+                        <p className="mt-4 text-gray-600">Don't have an account? <a href="/auth/register" className="text-blue-500 hover:underline">Sign Up</a></p>
                         <div className="w-full mt-6">
                             <div className="flex items-center my-4">
                                 <div className="flex-grow h-px bg-gray-300"></div>

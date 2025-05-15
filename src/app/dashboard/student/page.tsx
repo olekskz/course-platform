@@ -13,7 +13,6 @@ export default function Dashboard() {
 
     return (
         <>
-        <LoginnedHeader />
         <div className="flex flex-col min-h-screen">
             <main className="flex-grow container mx-auto">
                 <div className="flex flex-row items-center justify-center gap-10 mt-10 shadow-lg p-2 rounded-lg">

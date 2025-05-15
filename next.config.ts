@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+
+const nextConfig = {
   devIndicators: false,
+  experimental: {
+    serverActions: true,
+  },
+  middleware: true,
 };
 
-export default nextConfig;
+module.exports = nextConfig;

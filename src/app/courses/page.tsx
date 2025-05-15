@@ -1,4 +1,4 @@
-import Header from "../../components/header";
+import Header from "../../components/notLoggedHeader";
 import Footer from "../../components/footer";
 import CourseCard from "../../components/courseCard";
 import Image from "next/image";
@@ -6,7 +6,6 @@ import Image from "next/image";
 export default function Courses() {
     return (
         <div className="flex flex-col min-h-screen">
-            <Header />
             <main className="flex-grow container mx-auto px-4 md:px-20 py-10">
                 <h1 className="font-bold text-3xl mb-8">Explore 🔥</h1>
 

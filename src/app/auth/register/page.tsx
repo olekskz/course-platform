@@ -1,29 +1,23 @@
 'use client';
-import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import Image from "next/image";
 import { useState } from "react";
-
+import { useUserRegister } from "@/hooks/useUser";
 export default function Login() {
-    const [password, setPassword] = useState("");
-    const [confirm, setConfirm] = useState("");
-    const [error, setError] = useState("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [confirm, setConfirm] = useState<string>("");
+    const [errorUser, setErrorUser] = useState<string>("");
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (password !== confirm) {
-            setError("Passwords do not match");
-        } else if (password.length < 8) {
-            setError("Password must be at least 8 characters long");
-        } else {
-            setError("");
-            // Тут логіка реєстрації
-        }
+    const { registerUser, loading, error } = useUserRegister();
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        await registerUser({ email, password });
     };
 
     return (
         <>
-            <Header />
             <div className="flex flex-row items-center justify-center min-h-screen">
                 <div className="hidden md:flex w-1/2 justify-center">
                     <Image src="/assets/deepimg-1746723654547-removebg-preview.png" width={500} height={300} alt="Login page" priority={false} />
@@ -37,8 +31,10 @@ export default function Login() {
                     <div className="flex flex-col items-center mt-4 w-full max-w-xs">
                         <input
                             type="email"
+                            value={email}
                             placeholder="Email"
                             className="p-2 border border-gray-300 rounded mb-4 w-full"
+                            onChange={e => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
@@ -55,7 +51,7 @@ export default function Login() {
                             onChange={e => setConfirm(e.target.value)}
                         />
                         {error && (
-                            <div className="text-red-500 mb-2 w-full text-center">{error}</div>
+                            <div className="text-red-500 mb-2 w-full text-center">{errorUser}</div>
                         )}
                         <button
                             type="submit"

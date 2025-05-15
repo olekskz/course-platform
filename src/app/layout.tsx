@@ -1,12 +1,13 @@
-'use client'
+
 import "../styles/globals.css";
-import { Provider } from "react-redux";
-import { store } from "../store/store";
+import ClientProviders from "../components/ClientProviders";
+import Header from "../components/header";
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
@@ -15,13 +16,13 @@ export default function RootLayout({
         <meta name="description" content="Learnify" />
         <title>Learnify</title>
         <link rel="icon" href="/assets/favicon.ico" />
-        </head>
+      </head>
       <body>
-        <Provider store={store}>
+        <ClientProviders>
+        <Header />
           {children}
-        </Provider>
+        </ClientProviders>
       </body>
     </html>
   );
 }
-

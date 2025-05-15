@@ -1,9 +1,8 @@
-import Header from "../../components/header";
+import Header from "../../components/notLoggedHeader";
 import Footer from "../../components/footer";
 export default function Contact() {
     return (
         <>
-            <Header />
             <div className="bg-gradient-to-b from-white to-blue-500 h-screen flex flex-col">
                 <div className="flex-1 flex flex-col items-center justify-center p-4">
                     <h1 className="text-4xl font-bold text-center text-white">Contact Us</h1>
