@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      UserRole @default(USER)
+
+  @@map("users")
+  UserCourse UserCourse[]
+}
+
+model Course {
+  id        String   @id @default(cuid())
+  name      String
+  image     String
+  description String
+  price     Int
+  hours     Int
+  lessonsCount Int
+  lessons   Lesson[]
+
+  @@map("courses")
+  UserCourse UserCourse[]
+}
+
+model Lesson {
+  id        String   @id @default(cuid())
+  name      String
+  description String
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+
+  @@map("lessons")
+}
+
+model UserCourse {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String
+  user      User     @relation(fields: [userId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+  @@map("user_courses")
+}
+
+model Instructor {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  secondName String
+  phone     String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("instructors")
+}
+
+model InstructorRequest {
+  id        String   @id @default(cuid())
+  name      String
+  secondName String
+  email     String
+  phone     String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("instructor_requests")
+}
+
+enum UserRole {
+  USER
+  INSTRUCTOR
+  ADMIN
+}

@@ -1,0 +1,44 @@
+# === Global ===
+node_modules/
+.env
+.env.*.local
+dist/
+build/
+*.log
+.DS_Store
+*.sqlite
+*.sqlite-journal
+
+# === Client (Next.js) ===
+client/.next/
+client/out/
+client/node_modules/
+client/.env
+client/.env.*.local
+client/.turbo/
+client/.vercel/
+
+# === Server (NestJS + Prisma) ===
+server/node_modules/
+server/dist/
+server/.env
+server/.env.*.local
+server/prisma/dev.db
+server/prisma/dev.db-journal
+server/prisma/dev.db-trace.json
+server/prisma/dev.db-trace.jsonl
+server/prisma/dev.db-trace.jsonl.gz
+
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# === OS-specific ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
