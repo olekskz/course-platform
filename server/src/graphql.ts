@@ -14,6 +14,16 @@ export enum UserRole {
     ADMIN = "ADMIN"
 }
 
+export class CreateCourse {
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    hours: number;
+    isActive: boolean;
+    instructorId: string;
+}
+
 export class User {
     id: string;
     email: string;
@@ -62,12 +72,16 @@ export abstract class IMutation {
     abstract createInstructor(name: string, secondName: string, phone: string): string | Promise<string>;
 
     abstract createInstructorRequest(name: string, secondName: string, phone: string, email: string): InstructorRequestResponse | Promise<InstructorRequestResponse>;
+
+    abstract createCourse(data: CreateCourse): boolean | Promise<boolean>;
 }
 
 export abstract class IQuery {
     abstract user(): User | Promise<User>;
 
     abstract getInstructorsRequests(): InstructorRequest[] | Promise<InstructorRequest[]>;
+
+    abstract getInstructorPendingRequest(email: string): InstructorRequestResponse | Promise<InstructorRequestResponse>;
 }
 
 type Nullable<T> = T | null;

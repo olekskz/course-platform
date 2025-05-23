@@ -38,16 +38,29 @@ type AuthPayload {
   email: String!
 }
 
+input CreateCourse {
+  name: String!
+  description: String!
+  price: Int!
+  image: String!
+  hours: Int!
+  isActive: Boolean!
+  instructorId: ID!
+}
+
+
 type Mutation {
     userRegister(email: String!, password: String!): AuthPayload!
     userLogin(email: String!, password: String!): AuthPayload!
     createInstructor(name: String!, secondName: String!, phone: String!): String!
     createInstructorRequest(name: String!, secondName: String!, phone: String!, email: String!): InstructorRequestResponse!
+    createCourse(data: CreateCourse!): Boolean!
 }
 
 type Query {
     user: User!
     getInstructorsRequests: [InstructorRequest!]!
+    getInstructorPendingRequest(email: String!): InstructorRequestResponse!
 }
 
 enum UserRole {

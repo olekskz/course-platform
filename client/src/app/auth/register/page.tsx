@@ -13,7 +13,20 @@ export default function Login() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        await registerUser({ email, password });
+        try {
+            if (password !== confirm) {
+                setErrorUser("Passwords do not match");
+                return;
+            }
+            const userData = {
+                email,
+                password,
+            };
+            await registerUser(userData);
+        } catch (err) {
+            console.error('Registration error:', err);
+            setErrorUser("An error occurred during registration");
+        }
     };
 
     return (

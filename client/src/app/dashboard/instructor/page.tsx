@@ -1,13 +1,12 @@
 'use client';
-import LoginnedHeader from "../../../components/headers/loginnedHeader"
 import Footer from "../../../components/footer"
 import Image from "next/image"
 import dynamic from "next/dynamic"
+import Link from "next/link";
 
 const EarningsChart = dynamic(() => import("../../../components/charts/EarningsChart"), { ssr: false });
 
 export default function InstructorDashboard() {
-    // Мок-дані
     const completedCourses = 5;
     const activeStudents = 120;
     const totalSales = 340;
@@ -65,7 +64,7 @@ export default function InstructorDashboard() {
                                 </li>
                             ))}
                         </ul>
-                        <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer w-full max-w-xs mx-auto block">Add New Course</button>
+                        <Link href="/dashboard/instructor/create-course" className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer max-w-xs text-center mx-auto block">Add New Course</Link>
                     </div>
                 </main>
                 <Footer />

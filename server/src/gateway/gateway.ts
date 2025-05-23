@@ -4,6 +4,9 @@ import { CreateInstructorRequestDto } from './dto/create-gateway.dto';
 import { Server, Socket } from 'socket.io';
 import * as jwt from 'jsonwebtoken';
 import { CreateInstructorDto } from 'src/instructor/dto/create-instructor.dto';
+import { UseGuards } from '@nestjs/common';import { AdminGuard } from '../guards/graphGuards/admin.guard';
+import { SocketAdminGuard } from 'src/guards/socketGuards/socketAdmin.guard';
+import { SocketUserGuard } from 'src/guards/socketGuards/socketUser.guard';
 
 @WebSocketGateway({
   cors: {
@@ -36,6 +39,7 @@ export class GatewayService implements OnGatewayConnection {
     }
   }
 
+  @UseGuards(SocketUserGuard)
   @SubscribeMessage('InstructorRequest')
   async handleInstructorRequest(
     @MessageBody() body: CreateInstructorRequestDto,
@@ -65,6 +69,7 @@ export class GatewayService implements OnGatewayConnection {
     }
   }
 
+  @UseGuards(SocketAdminGuard)
   @SubscribeMessage('approveInstructorRequest')
   async handleApproveInstructorRequest(@MessageBody() id: string) {
     if (!id) {
@@ -83,6 +88,7 @@ export class GatewayService implements OnGatewayConnection {
     }
   }
 
+  @UseGuards(SocketAdminGuard)
   @SubscribeMessage('rejectInstructorRequest')
   async handleRejectInstructorRequest(@MessageBody() id: string) {
     if (!id) {
@@ -100,7 +106,7 @@ export class GatewayService implements OnGatewayConnection {
       throw error;
     }
   }
-
+  @UseGuards(SocketAdminGuard)
   @SubscribeMessage('createInstructor')
   async handleCreateInstructor(@MessageBody() body: CreateInstructorDto) {
     const user = await this.prisma.user.findUnique({

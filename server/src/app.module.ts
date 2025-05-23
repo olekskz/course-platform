@@ -6,6 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { InstructorModule } from './instructor/instructor.module';
 import { GatewayModule } from './gateway/gateway.module';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { GatewayModule } from './gateway/gateway.module';
     AuthModule,
     InstructorModule,
     GatewayModule,
+    CourseModule,
   ],
   providers: [PrismaService],
 })

@@ -35,18 +35,25 @@ model Course {
   hours     Int
   lessonsCount Int
   lessons   Lesson[]
+  instructorId String
+  instructor Instructor @relation(fields: [instructorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("courses")
   UserCourse UserCourse[]
 }
 
 model Lesson {
-  id        String   @id @default(cuid())
-  name      String
+  id          String   @id @default(cuid())
+  name        String
   description String
-  courseId  String
-  course    Course   @relation(fields: [courseId], references: [id])
-
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+  orderIndex  Int      // порядок уроку в курсі  // тривалість у хвилинах
+  videoUrl    String?  // посилання на відео
+  materials   String?  // додаткові матеріали
+  
   @@map("lessons")
 }
 
@@ -72,6 +79,7 @@ model Instructor {
   role      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  courses   Course[]
 
   @@map("instructors")
 }

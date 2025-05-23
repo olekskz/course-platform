@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import { Instructor } from 'src/graphql';
+
 
 @Injectable()
 export class InstructorService {
@@ -20,5 +20,18 @@ export class InstructorService {
       where: { id },
       data: { status: 'approved' },
     });
+  }
+
+  async getInstructorPendingRequest(email: string) {
+    const request = await this.prisma.instructorRequest.findFirst({
+      where: {
+        email,
+        status: 'pending',
+      },
+    });
+    
+    return { 
+      success: !!request 
+    };
   }
 }

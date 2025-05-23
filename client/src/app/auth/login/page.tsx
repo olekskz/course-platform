@@ -1,5 +1,5 @@
 'use client'
-import Footer from "../../../components/footer";
+import Footer from "@/components/footer";
 import Image from "next/image";
 import { useState } from "react";
 import { useUserLogin } from "@/hooks/useUser";
@@ -17,25 +17,7 @@ export default function Login() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const result = await loginUser({ email, password });
-            
-            if (result?.access_token) {
-                Cookies.set('token', result.access_token, { expires: 7 });
-                
-                // Декодуємо токен для отримання ролі
-                const decoded = jwtDecode(result.access_token) as any;
-                const role = decoded.role;
-
-                // Перенаправляємо на відповідний дашборд
-                if (role === 'INSTRUCTOR') {
-                    router.push('/dashboard/instructor');
-                } else if (role === 'ADMIN') {
-                    router.push('/dashboard/admin');
-                } else {
-                    router.push('/dashboard/student');
-                }
-                router.refresh();
-            }
+            await loginUser({ email, password });
         } catch (err) {
             console.error('Login error:', err);
         }

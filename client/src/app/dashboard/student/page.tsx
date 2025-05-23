@@ -1,17 +1,31 @@
 'use client';
-import LoginnedHeader from "../../../components/headers/loginnedHeader"
 import Footer from "../../../components/footer"
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import { ProgressBar } from "../../../components/ProgressBar"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InstructorModal from "@/components/modals/instructorModal";
+import {jwtDecode} from "jwt-decode";
+import { useQuery } from "@apollo/client";
+import { GET_INSTRUCTOR_PENDING_REQUEST } from "@/graphql/instructorMutations";
+import Cookies from "js-cookie";
 const ProgressChart = dynamic(() => import("../../../components/charts/progressChart"), { ssr: false })
 
 export default function Dashboard() {
-
     const progressData = [2, 5, 8, 12, 18, 25];
     const [isInstructorModalOpen, setIsInstructorModalOpen] = useState<boolean>(false);
+
+    // Get token from cookies client-side
+    const token = typeof window !== 'undefined' ? Cookies.get('token') : null;
+    const decoded = token ? jwtDecode(token) as any : null;
+    const email = decoded?.email;
+
+    // Use useQuery hook properly
+    const { data: requestData, loading } = useQuery(GET_INSTRUCTOR_PENDING_REQUEST, {
+        variables: { email },
+    });
+
+    const isPending = requestData?.getInstructorPendingRequest?.success;
 
     return (
         <>
@@ -22,7 +36,17 @@ export default function Dashboard() {
                         <h1 className="text-2xl font-bold">Student Dashboard</h1>
                         <Image src="/assets/379383_student_icon.png" alt="profile" width={40} height={40} />   
                     </div>
-                    <button className="bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer px-4 py-2" onClick={() => setIsInstructorModalOpen(true)}>Become an Instructor</button>
+                    <button 
+                        className={`px-4 py-2 rounded transition ${
+                            isPending 
+                                ? 'bg-gray-400 cursor-not-allowed' 
+                                : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                        } text-white`}
+                        onClick={() => !isPending && setIsInstructorModalOpen(true)}
+                        disabled={isPending}
+                    >
+                        {isPending ? 'Your request is pending' : 'Become an Instructor'}
+                    </button>
                 </div>
                 {isInstructorModalOpen && <InstructorModal isOpen={isInstructorModalOpen} onClose={() => setIsInstructorModalOpen(false)} />}
                 <div className="grid grid-cols-1 gap-6 mt-10">

@@ -9,10 +9,5 @@ export async function POST() {
     path: '/',
   });
 
-  response.cookies.set('selectedRole', '', {
-    expires: new Date(0),
-    path: '/',
-  });
-
   return response;
 }

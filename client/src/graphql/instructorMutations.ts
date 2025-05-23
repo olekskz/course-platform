@@ -20,3 +20,12 @@ export const GET_INSTRUCTOR_REQUESTS = gql`
         }
     }
 `;
+
+export const GET_INSTRUCTOR_PENDING_REQUEST = gql`
+    query GetInstructorPendingRequest($email: String!) {
+        getInstructorPendingRequest(email: $email) {
+            success
+        }
+    }
+`;
+
