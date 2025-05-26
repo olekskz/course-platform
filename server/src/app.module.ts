@@ -7,9 +7,12 @@ import { join } from 'path';
 import { InstructorModule } from './instructor/instructor.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { CourseModule } from './course/course.module';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],

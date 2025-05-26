@@ -32,20 +32,12 @@ type InstructorRequestResponse {
   success: Boolean!
 }
 
+
+
 type AuthPayload {
   access_token: String 
   id: ID!
   email: String!
-}
-
-input CreateCourse {
-  name: String!
-  description: String!
-  price: Int!
-  image: String!
-  hours: Int!
-  isActive: Boolean!
-  instructorId: ID!
 }
 
 
@@ -54,7 +46,6 @@ type Mutation {
     userLogin(email: String!, password: String!): AuthPayload!
     createInstructor(name: String!, secondName: String!, phone: String!): String!
     createInstructorRequest(name: String!, secondName: String!, phone: String!, email: String!): InstructorRequestResponse!
-    createCourse(data: CreateCourse!): Boolean!
 }
 
 type Query {

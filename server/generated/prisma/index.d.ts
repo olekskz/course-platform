@@ -3281,7 +3281,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Course", 'String'>
     readonly image: FieldRef<"Course", 'String'>
     readonly description: FieldRef<"Course", 'String'>
-    readonly price: FieldRef<"Course", 'Int'>
+    readonly price: FieldRef<"Course", 'Float'>
     readonly hours: FieldRef<"Course", 'Int'>
     readonly lessonsCount: FieldRef<"Course", 'Int'>
     readonly instructorId: FieldRef<"Course", 'String'>
@@ -8242,20 +8242,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -8266,6 +8252,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -8340,7 +8340,7 @@ export namespace Prisma {
     name?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
-    price?: IntFilter<"Course"> | number
+    price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
     lessonsCount?: IntFilter<"Course"> | number
     instructorId?: StringFilter<"Course"> | string
@@ -8375,7 +8375,7 @@ export namespace Prisma {
     name?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
-    price?: IntFilter<"Course"> | number
+    price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
     lessonsCount?: IntFilter<"Course"> | number
     instructorId?: StringFilter<"Course"> | string
@@ -8412,7 +8412,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Course"> | string
     image?: StringWithAggregatesFilter<"Course"> | string
     description?: StringWithAggregatesFilter<"Course"> | string
-    price?: IntWithAggregatesFilter<"Course"> | number
+    price?: FloatWithAggregatesFilter<"Course"> | number
     hours?: IntWithAggregatesFilter<"Course"> | number
     lessonsCount?: IntWithAggregatesFilter<"Course"> | number
     instructorId?: StringWithAggregatesFilter<"Course"> | string
@@ -8785,7 +8785,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8800,7 +8800,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     instructorId?: StringFieldUpdateOperationsInput | string
@@ -8828,7 +8828,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8840,7 +8840,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     instructorId?: StringFieldUpdateOperationsInput | string
@@ -9241,6 +9241,17 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9316,6 +9327,22 @@ export namespace Prisma {
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9613,6 +9640,14 @@ export namespace Prisma {
     connect?: UserCourseWhereUniqueInput | UserCourseWhereUniqueInput[]
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9857,6 +9892,33 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9871,17 +9933,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -10182,7 +10233,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10196,7 +10247,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     instructorId?: StringFieldUpdateOperationsInput | string
@@ -10306,7 +10357,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10320,7 +10371,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     instructorId?: StringFieldUpdateOperationsInput | string
@@ -10391,7 +10442,7 @@ export namespace Prisma {
     name?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
-    price?: IntFilter<"Course"> | number
+    price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
     lessonsCount?: IntFilter<"Course"> | number
     instructorId?: StringFilter<"Course"> | string
@@ -10500,7 +10551,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10514,7 +10565,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10528,7 +10579,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

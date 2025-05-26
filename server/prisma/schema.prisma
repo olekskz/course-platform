@@ -30,8 +30,8 @@ model Course {
   id        String   @id @default(cuid())
   name      String
   image     String
-  description String
-  price     Int
+  description String @db.VarChar(100) 
+  price     Float
   hours     Int
   lessonsCount Int
   lessons   Lesson[]
@@ -50,9 +50,9 @@ model Lesson {
   description String
   courseId    String
   course      Course   @relation(fields: [courseId], references: [id])
-  orderIndex  Int      // порядок уроку в курсі  // тривалість у хвилинах
-  videoUrl    String?  // посилання на відео
-  materials   String?  // додаткові матеріали
+  orderIndex  Int      
+  videoUrl    String?  
+  materials   String?  
   
   @@map("lessons")
 }

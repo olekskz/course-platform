@@ -3,14 +3,11 @@ import Footer from "@/components/footer";
 import Image from "next/image";
 import { useState } from "react";
 import { useUserLogin } from "@/hooks/useUser";
-import { useRouter } from "next/navigation";
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
+
 
 export default function Login() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const router = useRouter();
 
     const { loginUser, loading, error } = useUserLogin();
 
