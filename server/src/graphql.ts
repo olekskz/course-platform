@@ -70,6 +70,20 @@ export abstract class IQuery {
     abstract getInstructorsRequests(): InstructorRequest[] | Promise<InstructorRequest[]>;
 
     abstract getInstructorPendingRequest(email: string): InstructorRequestResponse | Promise<InstructorRequestResponse>;
+
+    abstract getCourseByInstructorId(instructorId: string): Course[] | Promise<Course[]>;
+}
+
+export class Course {
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    hours: number;
+    lessonsCount: number;
+    image: string;
+    studentsCount: number;
+    isActive: boolean;
 }
 
 type Nullable<T> = T | null;

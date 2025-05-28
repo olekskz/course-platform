@@ -1,4 +1,4 @@
-import { UserLogin, UserRegister } from "@/graphql/authMutations";
+import { UserLogin, UserRegister } from "@/graphql/authGraphQL";
 import { jwtDecode } from "jwt-decode";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/navigation";

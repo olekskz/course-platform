@@ -2542,49 +2542,57 @@ export namespace Prisma {
     price: number | null
     hours: number | null
     lessonsCount: number | null
+    studentsCount: number | null
   }
 
   export type CourseSumAggregateOutputType = {
     price: number | null
     hours: number | null
     lessonsCount: number | null
+    studentsCount: number | null
   }
 
   export type CourseMinAggregateOutputType = {
     id: string | null
-    name: string | null
+    title: string | null
     image: string | null
     description: string | null
     price: number | null
     hours: number | null
     lessonsCount: number | null
+    isActive: boolean | null
     instructorId: string | null
+    studentsCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type CourseMaxAggregateOutputType = {
     id: string | null
-    name: string | null
+    title: string | null
     image: string | null
     description: string | null
     price: number | null
     hours: number | null
     lessonsCount: number | null
+    isActive: boolean | null
     instructorId: string | null
+    studentsCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type CourseCountAggregateOutputType = {
     id: number
-    name: number
+    title: number
     image: number
     description: number
     price: number
     hours: number
     lessonsCount: number
+    isActive: number
     instructorId: number
+    studentsCount: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2595,49 +2603,57 @@ export namespace Prisma {
     price?: true
     hours?: true
     lessonsCount?: true
+    studentsCount?: true
   }
 
   export type CourseSumAggregateInputType = {
     price?: true
     hours?: true
     lessonsCount?: true
+    studentsCount?: true
   }
 
   export type CourseMinAggregateInputType = {
     id?: true
-    name?: true
+    title?: true
     image?: true
     description?: true
     price?: true
     hours?: true
     lessonsCount?: true
+    isActive?: true
     instructorId?: true
+    studentsCount?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type CourseMaxAggregateInputType = {
     id?: true
-    name?: true
+    title?: true
     image?: true
     description?: true
     price?: true
     hours?: true
     lessonsCount?: true
+    isActive?: true
     instructorId?: true
+    studentsCount?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type CourseCountAggregateInputType = {
     id?: true
-    name?: true
+    title?: true
     image?: true
     description?: true
     price?: true
     hours?: true
     lessonsCount?: true
+    isActive?: true
     instructorId?: true
+    studentsCount?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2731,13 +2747,15 @@ export namespace Prisma {
 
   export type CourseGroupByOutputType = {
     id: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
     lessonsCount: number
+    isActive: boolean
     instructorId: string
+    studentsCount: number
     createdAt: Date
     updatedAt: Date
     _count: CourseCountAggregateOutputType | null
@@ -2763,13 +2781,15 @@ export namespace Prisma {
 
   export type CourseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    title?: boolean
     image?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
     lessonsCount?: boolean
+    isActive?: boolean
     instructorId?: boolean
+    studentsCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lessons?: boolean | Course$lessonsArgs<ExtArgs>
@@ -2780,13 +2800,15 @@ export namespace Prisma {
 
   export type CourseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    title?: boolean
     image?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
     lessonsCount?: boolean
+    isActive?: boolean
     instructorId?: boolean
+    studentsCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     instructor?: boolean | InstructorDefaultArgs<ExtArgs>
@@ -2794,13 +2816,15 @@ export namespace Prisma {
 
   export type CourseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    title?: boolean
     image?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
     lessonsCount?: boolean
+    isActive?: boolean
     instructorId?: boolean
+    studentsCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     instructor?: boolean | InstructorDefaultArgs<ExtArgs>
@@ -2808,18 +2832,20 @@ export namespace Prisma {
 
   export type CourseSelectScalar = {
     id?: boolean
-    name?: boolean
+    title?: boolean
     image?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
     lessonsCount?: boolean
+    isActive?: boolean
     instructorId?: boolean
+    studentsCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "description" | "price" | "hours" | "lessonsCount" | "instructorId" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
+  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "image" | "description" | "price" | "hours" | "lessonsCount" | "isActive" | "instructorId" | "studentsCount" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lessons?: boolean | Course$lessonsArgs<ExtArgs>
     instructor?: boolean | InstructorDefaultArgs<ExtArgs>
@@ -2842,13 +2868,15 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
+      title: string
       image: string
       description: string
       price: number
       hours: number
       lessonsCount: number
+      isActive: boolean
       instructorId: string
+      studentsCount: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["course"]>
@@ -3278,13 +3306,15 @@ export namespace Prisma {
    */
   interface CourseFieldRefs {
     readonly id: FieldRef<"Course", 'String'>
-    readonly name: FieldRef<"Course", 'String'>
+    readonly title: FieldRef<"Course", 'String'>
     readonly image: FieldRef<"Course", 'String'>
     readonly description: FieldRef<"Course", 'String'>
     readonly price: FieldRef<"Course", 'Float'>
     readonly hours: FieldRef<"Course", 'Int'>
     readonly lessonsCount: FieldRef<"Course", 'Int'>
+    readonly isActive: FieldRef<"Course", 'Boolean'>
     readonly instructorId: FieldRef<"Course", 'String'>
+    readonly studentsCount: FieldRef<"Course", 'Int'>
     readonly createdAt: FieldRef<"Course", 'DateTime'>
     readonly updatedAt: FieldRef<"Course", 'DateTime'>
   }
@@ -8104,13 +8134,15 @@ export namespace Prisma {
 
   export const CourseScalarFieldEnum: {
     id: 'id',
-    name: 'name',
+    title: 'title',
     image: 'image',
     description: 'description',
     price: 'price',
     hours: 'hours',
     lessonsCount: 'lessonsCount',
+    isActive: 'isActive',
     instructorId: 'instructorId',
+    studentsCount: 'studentsCount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -8267,6 +8299,13 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
   /**
    * Deep Input Types
    */
@@ -8337,13 +8376,15 @@ export namespace Prisma {
     OR?: CourseWhereInput[]
     NOT?: CourseWhereInput | CourseWhereInput[]
     id?: StringFilter<"Course"> | string
-    name?: StringFilter<"Course"> | string
+    title?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
     lessonsCount?: IntFilter<"Course"> | number
+    isActive?: BoolFilter<"Course"> | boolean
     instructorId?: StringFilter<"Course"> | string
+    studentsCount?: IntFilter<"Course"> | number
     createdAt?: DateTimeFilter<"Course"> | Date | string
     updatedAt?: DateTimeFilter<"Course"> | Date | string
     lessons?: LessonListRelationFilter
@@ -8353,13 +8394,15 @@ export namespace Prisma {
 
   export type CourseOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
     image?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    isActive?: SortOrder
     instructorId?: SortOrder
+    studentsCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lessons?: LessonOrderByRelationAggregateInput
@@ -8372,13 +8415,15 @@ export namespace Prisma {
     AND?: CourseWhereInput | CourseWhereInput[]
     OR?: CourseWhereInput[]
     NOT?: CourseWhereInput | CourseWhereInput[]
-    name?: StringFilter<"Course"> | string
+    title?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
     lessonsCount?: IntFilter<"Course"> | number
+    isActive?: BoolFilter<"Course"> | boolean
     instructorId?: StringFilter<"Course"> | string
+    studentsCount?: IntFilter<"Course"> | number
     createdAt?: DateTimeFilter<"Course"> | Date | string
     updatedAt?: DateTimeFilter<"Course"> | Date | string
     lessons?: LessonListRelationFilter
@@ -8388,13 +8433,15 @@ export namespace Prisma {
 
   export type CourseOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
     image?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    isActive?: SortOrder
     instructorId?: SortOrder
+    studentsCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CourseCountOrderByAggregateInput
@@ -8409,13 +8456,15 @@ export namespace Prisma {
     OR?: CourseScalarWhereWithAggregatesInput[]
     NOT?: CourseScalarWhereWithAggregatesInput | CourseScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Course"> | string
-    name?: StringWithAggregatesFilter<"Course"> | string
+    title?: StringWithAggregatesFilter<"Course"> | string
     image?: StringWithAggregatesFilter<"Course"> | string
     description?: StringWithAggregatesFilter<"Course"> | string
     price?: FloatWithAggregatesFilter<"Course"> | number
     hours?: IntWithAggregatesFilter<"Course"> | number
     lessonsCount?: IntWithAggregatesFilter<"Course"> | number
+    isActive?: BoolWithAggregatesFilter<"Course"> | boolean
     instructorId?: StringWithAggregatesFilter<"Course"> | string
+    studentsCount?: IntWithAggregatesFilter<"Course"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
   }
@@ -8752,12 +8801,14 @@ export namespace Prisma {
 
   export type CourseCreateInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     lessons?: LessonCreateNestedManyWithoutCourseInput
@@ -8767,13 +8818,15 @@ export namespace Prisma {
 
   export type CourseUncheckedCreateInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
     instructorId: string
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     lessons?: LessonUncheckedCreateNestedManyWithoutCourseInput
@@ -8782,12 +8835,14 @@ export namespace Prisma {
 
   export type CourseUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUpdateManyWithoutCourseNestedInput
@@ -8797,13 +8852,15 @@ export namespace Prisma {
 
   export type CourseUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     instructorId?: StringFieldUpdateOperationsInput | string
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUncheckedUpdateManyWithoutCourseNestedInput
@@ -8812,38 +8869,44 @@ export namespace Prisma {
 
   export type CourseCreateManyInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
     instructorId: string
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CourseUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CourseUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     instructorId?: StringFieldUpdateOperationsInput | string
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9263,6 +9326,11 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type LessonListRelationFilter = {
     every?: LessonWhereInput
     some?: LessonWhereInput
@@ -9280,13 +9348,15 @@ export namespace Prisma {
 
   export type CourseCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
     image?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    isActive?: SortOrder
     instructorId?: SortOrder
+    studentsCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9295,30 +9365,35 @@ export namespace Prisma {
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    studentsCount?: SortOrder
   }
 
   export type CourseMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
     image?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    isActive?: SortOrder
     instructorId?: SortOrder
+    studentsCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type CourseMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
     image?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    isActive?: SortOrder
     instructorId?: SortOrder
+    studentsCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9327,6 +9402,7 @@ export namespace Prisma {
     price?: SortOrder
     hours?: SortOrder
     lessonsCount?: SortOrder
+    studentsCount?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -9359,6 +9435,14 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -9656,6 +9740,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type LessonUpdateManyWithoutCourseNestedInput = {
     create?: XOR<LessonCreateWithoutCourseInput, LessonUncheckedCreateWithoutCourseInput> | LessonCreateWithoutCourseInput[] | LessonUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: LessonCreateOrConnectWithoutCourseInput | LessonCreateOrConnectWithoutCourseInput[]
@@ -9903,6 +9991,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -9933,6 +10026,14 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -10186,12 +10287,14 @@ export namespace Prisma {
 
   export type CourseCreateWithoutLessonsInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     instructor: InstructorCreateNestedOneWithoutCoursesInput
@@ -10200,13 +10303,15 @@ export namespace Prisma {
 
   export type CourseUncheckedCreateWithoutLessonsInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
     instructorId: string
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     UserCourse?: UserCourseUncheckedCreateNestedManyWithoutCourseInput
@@ -10230,12 +10335,14 @@ export namespace Prisma {
 
   export type CourseUpdateWithoutLessonsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instructor?: InstructorUpdateOneRequiredWithoutCoursesNestedInput
@@ -10244,13 +10351,15 @@ export namespace Prisma {
 
   export type CourseUncheckedUpdateWithoutLessonsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     instructorId?: StringFieldUpdateOperationsInput | string
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserCourse?: UserCourseUncheckedUpdateManyWithoutCourseNestedInput
@@ -10281,12 +10390,14 @@ export namespace Prisma {
 
   export type CourseCreateWithoutUserCourseInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     lessons?: LessonCreateNestedManyWithoutCourseInput
@@ -10295,13 +10406,15 @@ export namespace Prisma {
 
   export type CourseUncheckedCreateWithoutUserCourseInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
     instructorId: string
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     lessons?: LessonUncheckedCreateNestedManyWithoutCourseInput
@@ -10354,12 +10467,14 @@ export namespace Prisma {
 
   export type CourseUpdateWithoutUserCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUpdateManyWithoutCourseNestedInput
@@ -10368,13 +10483,15 @@ export namespace Prisma {
 
   export type CourseUncheckedUpdateWithoutUserCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     instructorId?: StringFieldUpdateOperationsInput | string
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUncheckedUpdateManyWithoutCourseNestedInput
@@ -10382,12 +10499,14 @@ export namespace Prisma {
 
   export type CourseCreateWithoutInstructorInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     lessons?: LessonCreateNestedManyWithoutCourseInput
@@ -10396,12 +10515,14 @@ export namespace Prisma {
 
   export type CourseUncheckedCreateWithoutInstructorInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     lessons?: LessonUncheckedCreateNestedManyWithoutCourseInput
@@ -10439,13 +10560,15 @@ export namespace Prisma {
     OR?: CourseScalarWhereInput[]
     NOT?: CourseScalarWhereInput | CourseScalarWhereInput[]
     id?: StringFilter<"Course"> | string
-    name?: StringFilter<"Course"> | string
+    title?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
     lessonsCount?: IntFilter<"Course"> | number
+    isActive?: BoolFilter<"Course"> | boolean
     instructorId?: StringFilter<"Course"> | string
+    studentsCount?: IntFilter<"Course"> | number
     createdAt?: DateTimeFilter<"Course"> | Date | string
     updatedAt?: DateTimeFilter<"Course"> | Date | string
   }
@@ -10536,24 +10659,28 @@ export namespace Prisma {
 
   export type CourseCreateManyInstructorInput = {
     id?: string
-    name: string
+    title: string
     image: string
     description: string
     price: number
     hours: number
-    lessonsCount: number
+    lessonsCount?: number
+    isActive?: boolean
+    studentsCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CourseUpdateWithoutInstructorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUpdateManyWithoutCourseNestedInput
@@ -10562,12 +10689,14 @@ export namespace Prisma {
 
   export type CourseUncheckedUpdateWithoutInstructorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUncheckedUpdateManyWithoutCourseNestedInput
@@ -10576,12 +10705,14 @@ export namespace Prisma {
 
   export type CourseUncheckedUpdateManyWithoutInstructorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
     lessonsCount?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    studentsCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

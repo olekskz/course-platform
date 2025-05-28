@@ -6,9 +6,9 @@ import * as streamifier from 'streamifier';
 export class CloudinaryService {
     constructor(private configService: ConfigService) {
         v2.config({
-            cloud_name: this.configService.get<string>('CLOUDINARY_CLOUD_NAME'),
+            cloud_name: this.configService.get<string>('CLOUDINARY_NAME'),
             api_key: this.configService.get<string>('CLOUDINARY_API_KEY'),
-            api_secret: this.configService.get<string>('CLOUDINARY_API_SECRET'),
+            api_secret: this.configService.get<string>('CLOUDINARY_SECRET'),
         })
     }
 

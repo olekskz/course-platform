@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import InstructorModal from "@/components/modals/instructorModal";
 import {jwtDecode} from "jwt-decode";
 import { useQuery } from "@apollo/client";
-import { GET_INSTRUCTOR_PENDING_REQUEST } from "@/graphql/instructorMutations";
+import { GET_INSTRUCTOR_PENDING_REQUEST } from "@/graphql/instructorGraphQL";
 import Cookies from "js-cookie";
 const ProgressChart = dynamic(() => import("../../../components/charts/progressChart"), { ssr: false })
 
@@ -16,7 +16,7 @@ export default function Dashboard() {
     const [isInstructorModalOpen, setIsInstructorModalOpen] = useState<boolean>(false);
 
     // Get token from cookies client-side
-    const token = typeof window !== 'undefined' ? Cookies.get('token') : null;
+    const token =  Cookies.get('token');
     const decoded = token ? jwtDecode(token) as any : null;
     const email = decoded?.email;
 

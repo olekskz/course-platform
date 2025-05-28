@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -11,28 +11,28 @@ import Cookies from 'js-cookie';
 
 export default function LoginnedHeader() {
     const [open, setOpen] = useState(false);
+    const [dashboardLink, setDashboardLink] = useState('/dashboard/student');
     const isSelected = useSelector((state: any) => state.menu.isSelected);
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const token = Cookies.get('token');
-    let role = 'USER';
-    let dashboardLink = '/dashboard/student';
-
-    if (token) {
-        try {
-            const decoded = jwtDecode(token) as any;
-            role = decoded.role;
-            
-            if (role === "INSTRUCTOR") {
-                dashboardLink = '/dashboard/instructor';
-            } else if (role === "ADMIN") {
-                dashboardLink = '/dashboard/admin';
+    useEffect(() => {
+        const token = Cookies.get('token');
+        if (token) {
+            try {
+                const decoded = jwtDecode(token) as any;
+                const role = decoded.role;
+                
+                if (role === "INSTRUCTOR") {
+                    setDashboardLink('/dashboard/instructor');
+                } else if (role === "ADMIN") {
+                    setDashboardLink('/dashboard/admin');
+                }
+            } catch (error) {
+                console.error('Error decoding token:', error);
             }
-        } catch (error) {
-            console.error('Error decoding token:', error);
         }
-    }
+    }, []);
 
     const handleLogout = async () => {
         Cookies.remove('token');

@@ -1,13 +1,9 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
 import { CreateCourseDto } from "./dto/create-course.dto";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-
-
 
 @Injectable()
 export class CourseService {
-    storage: CloudinaryStorage;
     constructor(private prisma: PrismaService) {}
     
     async createCourse(data: CreateCourseDto, imageUrl: string): Promise<boolean> {
@@ -15,13 +11,12 @@ export class CourseService {
                    
             await this.prisma.course.create({
                 data: {
-                    name: data.name,
+                    title: data.name,
                     description: data.description,
                     image: imageUrl,
                     price: data.price,
                     hours: data.hours,
                     instructorId: data.instructorId,
-                    lessonsCount: 0,
                 },
             });
 
@@ -29,6 +24,18 @@ export class CourseService {
         } catch (error) {
             console.error("Error creating course:", error);
             throw error;
+        }
+    }
+
+    async getCourseByInstructor(instructorId: string) {
+        try {
+            const courses = await this.prisma.course.findMany({
+                where: { instructorId },
+            });
+            return courses;
+        } catch (error) {
+            console.error("Error fetching courses for instructor:", error);
+            return []
         }
     }
 }

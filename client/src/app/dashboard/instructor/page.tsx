@@ -3,6 +3,20 @@ import Footer from "../../../components/footer"
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import Link from "next/link";
+import { useGetCoursesByInstuructor } from "@/hooks/useCourse";
+import { useGetUserId } from "@/hooks/useGetUserID";
+import { useState, useEffect } from "react";
+
+type Course = {
+    id: string;           
+    title: string;         
+    description: string;
+    price: number;
+    image: string;
+    hours: number;
+    lessonsCount: number;
+    isActive: boolean;
+}
 
 const EarningsChart = dynamic(() => import("../../../components/charts/EarningsChart"), { ssr: false });
 
@@ -11,11 +25,21 @@ export default function InstructorDashboard() {
     const activeStudents = 120;
     const totalSales = 340;
     const earningsData = [120, 200, 150, 300, 250, 400, 350];
-    const courses = [
-        { id: 1, title: "React for Beginners", students: 40, status: "Active" },
-        { id: 2, title: "Advanced JavaScript", students: 30, status: "Active" },
-        { id: 3, title: "UI/UX Design", students: 25, status: "Completed" },
-    ];
+    const [courses, setCourses] = useState<Course[]>([]);
+    
+    const userData = useGetUserId();
+    const { coursesData, coursesLoading, coursesError } = useGetCoursesByInstuructor(userData.userId);
+
+
+    useEffect(() => {
+        if (coursesData && coursesData.getCourseByInstructorId) {
+            setCourses(coursesData.getCourseByInstructorId);
+        }
+    }, [coursesData]);
+
+
+    if (coursesLoading) return <div>Loading...</div>;
+    if (coursesError) return <div>Error: {coursesError}</div>;
 
     return (
         <>
@@ -50,16 +74,18 @@ export default function InstructorDashboard() {
                     <div className="shadow-lg p-4 rounded-lg w-full max-w-4xl mx-auto mt-10">
                         <h2 className="text-xl font-semibold mb-4">Your Courses</h2>
                         <ul className="space-y-2">
-                            {courses.map(course => (
+                            {courses.map((course: Course) => (
                                 <li key={course.id} className="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 border border-gray-100">
                                     <Image src="/assets/8665237_code_development_icon.png" alt="course" width={40} height={40} className="flex-shrink-0" />
                                     <div className="flex-1">
                                         <h3 className="font-semibold text-lg mb-1 flex items-center justify-between">
-                                            {course.title}
-                                            <button className="ml-4 px-3 py-1 text-sm bg-gray-200 hover:bg-blue-600 hover:text-white rounded transition cursor-pointer">Edit</button>
+                                            {course.title} 
+                                            <Link href={`dashboard/instructor/edit-course/${course.id}`} className="ml-4 px-3 py-1 text-sm bg-gray-200 hover:bg-blue-600 hover:text-white rounded transition cursor-pointer">Edit</Link>
                                         </h3>
-                                        <div className="text-sm text-gray-500 mb-1">Students: {course.students}</div>
-                                        <span className={`inline-block px-2 py-0.5 rounded text-xs ${course.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'}`}>{course.status}</span>
+                                        <div className="text-sm text-gray-500 mb-1">Lessons: {course.lessonsCount}</div>
+                                        <span className={`inline-block px-2 py-0.5 rounded text-xs ${course.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'}`}>
+                                            {course.isActive ? "Active" : "Draft"}
+                                        </span>
                                     </div>
                                 </li>
                             ))}

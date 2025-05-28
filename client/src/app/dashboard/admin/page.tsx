@@ -1,6 +1,6 @@
 'use client';
 import { useQuery } from "@apollo/client";
-import { GET_INSTRUCTOR_REQUESTS } from "@/graphql/instructorMutations";
+import { GET_INSTRUCTOR_REQUESTS } from "@/graphql/instructorGraphQL";
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode";
@@ -14,12 +14,6 @@ interface InstructorRequest {
     status: string;
 }
 
-interface DecodedToken {
-    sub: string;
-    email: string;
-    role: string;
-    exp: number;
-}
 
 export default function AdminDashboard() {
     const socket = useWebSocket();

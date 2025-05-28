@@ -28,14 +28,16 @@ model User {
 
 model Course {
   id        String   @id @default(cuid())
-  name      String
+  title      String
   image     String
-  description String @db.VarChar(100) 
+  description String @db.VarChar(500) 
   price     Float
   hours     Int
-  lessonsCount Int
+  lessonsCount Int @default(0)
+  isActive  Boolean @default(false)
   lessons   Lesson[]
   instructorId String
+  studentsCount Int @default(0)
   instructor Instructor @relation(fields: [instructorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

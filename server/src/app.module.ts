@@ -16,6 +16,7 @@ import { ConfigModule } from '@nestjs/config';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
+      debug: true,
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class',

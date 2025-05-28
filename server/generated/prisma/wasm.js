@@ -131,13 +131,15 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.CourseScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  title: 'title',
   image: 'image',
   description: 'description',
   price: 'price',
   hours: 'hours',
   lessonsCount: 'lessonsCount',
+  isActive: 'isActive',
   instructorId: 'instructorId',
+  studentsCount: 'studentsCount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

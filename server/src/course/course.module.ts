@@ -5,7 +5,7 @@ import { CourseController } from "./course.controller";
 import { MulterModule } from "@nestjs/platform-express";
 import { diskStorage, memoryStorage } from "multer";
 import { CloudinaryService } from "src/cloudinary.service";
-
+import { CourseResolver } from "./course.resolver";
 @Module({
     imports: [
         MulterModule.register({
@@ -13,7 +13,7 @@ import { CloudinaryService } from "src/cloudinary.service";
         })
     ],
     controllers: [CourseController],
-    providers: [PrismaService, CourseService, CloudinaryService],
+    providers: [PrismaService, CourseService, CloudinaryService, CourseResolver],
 })
 
 export class CourseModule {}

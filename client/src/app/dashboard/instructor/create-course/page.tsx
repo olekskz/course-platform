@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react"
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import { useCreateCourse } from "@/hooks/useCreateCourse";
+import { useCreateCourse } from "@/hooks/useCourse";
 
 interface DecodedToken {
   id: string;
