@@ -12,17 +12,28 @@ export class CloudinaryService {
         })
     }
 
-     async uploadImage(fileBuffer: Buffer): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const uploadStream = v2.uploader.upload_stream(
-                { folder: 'courses' },
-                (error, result) => {
-                    if (error) return reject(error);
-                    resolve(result);
-                }
-            );
-            
-            streamifier.createReadStream(fileBuffer).pipe(uploadStream);
-        });
+    async uploadImage(fileBuffer: Buffer): Promise<{ url: string; public_id: string }> {
+      return new Promise((resolve, reject) => {
+        const uploadStream = v2.uploader.upload_stream(
+          { folder: 'courses' },
+          (error, result) => {
+            if (error || !result) {
+              return reject(error || new Error("No result returned from Cloudinary"));
+            }
+        
+            resolve({
+              url: result.secure_url,
+              public_id: result.public_id
+            });
+          }
+        );
+    
+        streamifier.createReadStream(fileBuffer).pipe(uploadStream);
+      });
     }
+
+
+    async deleteImage(publicId: string): Promise<void> {
+      await v2.uploader.destroy(publicId);
+}
 }

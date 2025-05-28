@@ -76,11 +76,11 @@ export default function InstructorDashboard() {
                         <ul className="space-y-2">
                             {courses.map((course: Course) => (
                                 <li key={course.id} className="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                                    <Image src="/assets/8665237_code_development_icon.png" alt="course" width={40} height={40} className="flex-shrink-0" />
+                                    <Image src={course.image} alt="course" width={40} height={40} className="flex-shrink-0" />
                                     <div className="flex-1">
                                         <h3 className="font-semibold text-lg mb-1 flex items-center justify-between">
                                             {course.title} 
-                                            <Link href={`dashboard/instructor/edit-course/${course.id}`} className="ml-4 px-3 py-1 text-sm bg-gray-200 hover:bg-blue-600 hover:text-white rounded transition cursor-pointer">Edit</Link>
+                                            <Link href={`/dashboard/instructor/courses/${course.id}`} className="ml-4 px-3 py-1 text-sm bg-gray-200 hover:bg-blue-600 hover:text-white rounded transition cursor-pointer">Edit</Link>
                                         </h3>
                                         <div className="text-sm text-gray-500 mb-1">Lessons: {course.lessonsCount}</div>
                                         <span className={`inline-block px-2 py-0.5 rounded text-xs ${course.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'}`}>

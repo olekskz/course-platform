@@ -33,9 +33,6 @@ type InstructorRequestResponse {
 }
 
 
-
-
-
 type AuthPayload {
   access_token: String 
   id: ID!
@@ -55,6 +52,16 @@ type Query {
     getInstructorsRequests: [InstructorRequest!]!
     getInstructorPendingRequest(email: String!): InstructorRequestResponse!
     getCourseByInstructorId(instructorId: String!): [Course!]!
+    getCourseById(courseId: String!): CourseById!
+}
+
+type CourseById {
+  title: String!
+  description: String!
+  price: Float!
+  hours: Int!
+  image: String!
+  isActive: Boolean!
 }
 
 type Course {
@@ -68,6 +75,7 @@ type Course {
   studentsCount: Int!
   isActive: Boolean!
 }
+
 
 enum UserRole {
   USER

@@ -19,4 +19,15 @@ export class CourseResolver {
             return []
         }
     }
+
+    @Query()
+    async getCourseById(@Args('courseId') courseId: string) {
+        try {
+            const course = await this.courseService.getCourseById(courseId)
+            return course
+        } catch (err) {
+            console.error("Error with fetching course")
+            return null
+        }
+    }
 }

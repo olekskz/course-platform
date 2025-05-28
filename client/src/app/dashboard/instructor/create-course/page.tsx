@@ -14,8 +14,8 @@ interface DecodedToken {
 
 export default function CreateCoursePage() {
     const [courseName, setCourseName] = useState<string>("");
-    const [price, setPrice] = useState<number>(0);
-    const [length, setLength] = useState<number>(0);
+    const [price, setPrice] = useState<string>("");
+    const [length, setLength] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
 
@@ -88,34 +88,56 @@ export default function CreateCoursePage() {
                         <div className="mb-4">
                             <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
                             <input value={price}
-                                type="number"
+                                type="text"
                                 id="price" 
                                 name="price" 
                                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                                onChange={(e) => setPrice(Number(e.target.value))}
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  if (/^\d*\.?\d*$/.test(value)) {
+                                    setPrice(value);
+                                  }
+                                }}
+                                placeholder="Enter price"
                                 required
                             />
                         </div>
                         <div className="mb-4">
                             <label htmlFor="length" className="block text-sm font-medium text-gray-700">Length(in hours)</label>
                             <input value={length}
-                                type="number" 
+                                type="text" 
                                 id="hours" 
                                 name="hours" 
                                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                                onChange={(e) => setLength(Number(e.target.value))}
+                                onChange={(e) => {
+                                      const value = e.target.value;
+                                      if (/^\d*\.?\d*$/.test(value)) {
+                                        setLength(value);
+                                      }
+                                    }}
+                                    placeholder="Enter hours of course"
                                 required 
                             />
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-                            <textarea value={description} 
-                                id="description" 
-                                name="description" 
-                                rows={4} 
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                                required
-                                onChange={(e) => setDescription(e.target.value)}></textarea>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Description
+                                <span className="text-gray-400 text-xs ml-2">
+                                    ({description.length}/500 characters)
+                                </span>
+                            </label>
+                            <textarea
+                                value={description}
+                                onChange={(e) => {
+                                    if (e.target.value.length <= 500) {
+                                        setDescription(e.target.value)
+                                    }
+                                }}
+                                rows={4}
+                                maxLength={500}
+                                placeholder="Enter course description..."
+                                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
                         </div>
                         <div className="mb-4">
                             <label htmlFor="image" className="block text-sm font-medium text-gray-700">

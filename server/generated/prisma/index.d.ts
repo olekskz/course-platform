@@ -2556,6 +2556,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     image: string | null
+    image_public_id: string | null
     description: string | null
     price: number | null
     hours: number | null
@@ -2571,6 +2572,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     image: string | null
+    image_public_id: string | null
     description: string | null
     price: number | null
     hours: number | null
@@ -2586,6 +2588,7 @@ export namespace Prisma {
     id: number
     title: number
     image: number
+    image_public_id: number
     description: number
     price: number
     hours: number
@@ -2617,6 +2620,7 @@ export namespace Prisma {
     id?: true
     title?: true
     image?: true
+    image_public_id?: true
     description?: true
     price?: true
     hours?: true
@@ -2632,6 +2636,7 @@ export namespace Prisma {
     id?: true
     title?: true
     image?: true
+    image_public_id?: true
     description?: true
     price?: true
     hours?: true
@@ -2647,6 +2652,7 @@ export namespace Prisma {
     id?: true
     title?: true
     image?: true
+    image_public_id?: true
     description?: true
     price?: true
     hours?: true
@@ -2749,6 +2755,7 @@ export namespace Prisma {
     id: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -2783,6 +2790,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     image?: boolean
+    image_public_id?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
@@ -2802,6 +2810,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     image?: boolean
+    image_public_id?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
@@ -2818,6 +2827,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     image?: boolean
+    image_public_id?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
@@ -2834,6 +2844,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     image?: boolean
+    image_public_id?: boolean
     description?: boolean
     price?: boolean
     hours?: boolean
@@ -2845,7 +2856,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "image" | "description" | "price" | "hours" | "lessonsCount" | "isActive" | "instructorId" | "studentsCount" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
+  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "image" | "image_public_id" | "description" | "price" | "hours" | "lessonsCount" | "isActive" | "instructorId" | "studentsCount" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lessons?: boolean | Course$lessonsArgs<ExtArgs>
     instructor?: boolean | InstructorDefaultArgs<ExtArgs>
@@ -2870,6 +2881,7 @@ export namespace Prisma {
       id: string
       title: string
       image: string
+      image_public_id: string
       description: string
       price: number
       hours: number
@@ -3308,6 +3320,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Course", 'String'>
     readonly title: FieldRef<"Course", 'String'>
     readonly image: FieldRef<"Course", 'String'>
+    readonly image_public_id: FieldRef<"Course", 'String'>
     readonly description: FieldRef<"Course", 'String'>
     readonly price: FieldRef<"Course", 'Float'>
     readonly hours: FieldRef<"Course", 'Int'>
@@ -8136,6 +8149,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     image: 'image',
+    image_public_id: 'image_public_id',
     description: 'description',
     price: 'price',
     hours: 'hours',
@@ -8378,6 +8392,7 @@ export namespace Prisma {
     id?: StringFilter<"Course"> | string
     title?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
+    image_public_id?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
@@ -8396,6 +8411,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     image?: SortOrder
+    image_public_id?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
@@ -8412,6 +8428,7 @@ export namespace Prisma {
 
   export type CourseWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    image_public_id?: string
     AND?: CourseWhereInput | CourseWhereInput[]
     OR?: CourseWhereInput[]
     NOT?: CourseWhereInput | CourseWhereInput[]
@@ -8429,12 +8446,13 @@ export namespace Prisma {
     lessons?: LessonListRelationFilter
     instructor?: XOR<InstructorScalarRelationFilter, InstructorWhereInput>
     UserCourse?: UserCourseListRelationFilter
-  }, "id">
+  }, "id" | "image_public_id">
 
   export type CourseOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     image?: SortOrder
+    image_public_id?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
@@ -8458,6 +8476,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Course"> | string
     title?: StringWithAggregatesFilter<"Course"> | string
     image?: StringWithAggregatesFilter<"Course"> | string
+    image_public_id?: StringWithAggregatesFilter<"Course"> | string
     description?: StringWithAggregatesFilter<"Course"> | string
     price?: FloatWithAggregatesFilter<"Course"> | number
     hours?: IntWithAggregatesFilter<"Course"> | number
@@ -8803,6 +8822,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -8820,6 +8840,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -8837,6 +8858,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -8854,6 +8876,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -8871,6 +8894,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -8886,6 +8910,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -8900,6 +8925,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -9350,6 +9376,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     image?: SortOrder
+    image_public_id?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
@@ -9372,6 +9399,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     image?: SortOrder
+    image_public_id?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
@@ -9387,6 +9415,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     image?: SortOrder
+    image_public_id?: SortOrder
     description?: SortOrder
     price?: SortOrder
     hours?: SortOrder
@@ -10289,6 +10318,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10305,6 +10335,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10337,6 +10368,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -10353,6 +10385,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -10392,6 +10425,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10408,6 +10442,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10469,6 +10504,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -10485,6 +10521,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -10501,6 +10538,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10517,6 +10555,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10562,6 +10601,7 @@ export namespace Prisma {
     id?: StringFilter<"Course"> | string
     title?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
+    image_public_id?: StringFilter<"Course"> | string
     description?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
     hours?: IntFilter<"Course"> | number
@@ -10661,6 +10701,7 @@ export namespace Prisma {
     id?: string
     title: string
     image: string
+    image_public_id: string
     description: string
     price: number
     hours: number
@@ -10675,6 +10716,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -10691,6 +10733,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number
@@ -10707,6 +10750,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    image_public_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     hours?: IntFieldUpdateOperationsInput | number

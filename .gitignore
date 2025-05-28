@@ -17,6 +17,7 @@ client/.env
 client/.env.*.local
 client/.turbo/
 client/.vercel/
+client/design/
 
 # === Server (NestJS + Prisma) ===
 server/node_modules/

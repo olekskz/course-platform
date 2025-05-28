@@ -72,6 +72,17 @@ export abstract class IQuery {
     abstract getInstructorPendingRequest(email: string): InstructorRequestResponse | Promise<InstructorRequestResponse>;
 
     abstract getCourseByInstructorId(instructorId: string): Course[] | Promise<Course[]>;
+
+    abstract getCourseById(courseId: string): CourseById | Promise<CourseById>;
+}
+
+export class CourseById {
+    title: string;
+    description: string;
+    price: number;
+    hours: number;
+    image: string;
+    isActive: boolean;
 }
 
 export class Course {
