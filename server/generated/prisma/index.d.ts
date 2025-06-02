@@ -3805,39 +3805,39 @@ export namespace Prisma {
   }
 
   export type LessonAvgAggregateOutputType = {
-    orderIndex: number | null
+    lessonOrder: number | null
   }
 
   export type LessonSumAggregateOutputType = {
-    orderIndex: number | null
+    lessonOrder: number | null
   }
 
   export type LessonMinAggregateOutputType = {
     id: string | null
-    name: string | null
-    description: string | null
+    title: string | null
+    content: string | null
     courseId: string | null
-    orderIndex: number | null
+    lessonOrder: number | null
     videoUrl: string | null
     materials: string | null
   }
 
   export type LessonMaxAggregateOutputType = {
     id: string | null
-    name: string | null
-    description: string | null
+    title: string | null
+    content: string | null
     courseId: string | null
-    orderIndex: number | null
+    lessonOrder: number | null
     videoUrl: string | null
     materials: string | null
   }
 
   export type LessonCountAggregateOutputType = {
     id: number
-    name: number
-    description: number
+    title: number
+    content: number
     courseId: number
-    orderIndex: number
+    lessonOrder: number
     videoUrl: number
     materials: number
     _all: number
@@ -3845,39 +3845,39 @@ export namespace Prisma {
 
 
   export type LessonAvgAggregateInputType = {
-    orderIndex?: true
+    lessonOrder?: true
   }
 
   export type LessonSumAggregateInputType = {
-    orderIndex?: true
+    lessonOrder?: true
   }
 
   export type LessonMinAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
+    title?: true
+    content?: true
     courseId?: true
-    orderIndex?: true
+    lessonOrder?: true
     videoUrl?: true
     materials?: true
   }
 
   export type LessonMaxAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
+    title?: true
+    content?: true
     courseId?: true
-    orderIndex?: true
+    lessonOrder?: true
     videoUrl?: true
     materials?: true
   }
 
   export type LessonCountAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
+    title?: true
+    content?: true
     courseId?: true
-    orderIndex?: true
+    lessonOrder?: true
     videoUrl?: true
     materials?: true
     _all?: true
@@ -3971,11 +3971,11 @@ export namespace Prisma {
 
   export type LessonGroupByOutputType = {
     id: string
-    name: string
-    description: string
+    title: string
+    content: string
     courseId: string
-    orderIndex: number
-    videoUrl: string | null
+    lessonOrder: number
+    videoUrl: string
     materials: string | null
     _count: LessonCountAggregateOutputType | null
     _avg: LessonAvgAggregateOutputType | null
@@ -4000,10 +4000,10 @@ export namespace Prisma {
 
   export type LessonSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    description?: boolean
+    title?: boolean
+    content?: boolean
     courseId?: boolean
-    orderIndex?: boolean
+    lessonOrder?: boolean
     videoUrl?: boolean
     materials?: boolean
     course?: boolean | CourseDefaultArgs<ExtArgs>
@@ -4011,10 +4011,10 @@ export namespace Prisma {
 
   export type LessonSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    description?: boolean
+    title?: boolean
+    content?: boolean
     courseId?: boolean
-    orderIndex?: boolean
+    lessonOrder?: boolean
     videoUrl?: boolean
     materials?: boolean
     course?: boolean | CourseDefaultArgs<ExtArgs>
@@ -4022,10 +4022,10 @@ export namespace Prisma {
 
   export type LessonSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    description?: boolean
+    title?: boolean
+    content?: boolean
     courseId?: boolean
-    orderIndex?: boolean
+    lessonOrder?: boolean
     videoUrl?: boolean
     materials?: boolean
     course?: boolean | CourseDefaultArgs<ExtArgs>
@@ -4033,15 +4033,15 @@ export namespace Prisma {
 
   export type LessonSelectScalar = {
     id?: boolean
-    name?: boolean
-    description?: boolean
+    title?: boolean
+    content?: boolean
     courseId?: boolean
-    orderIndex?: boolean
+    lessonOrder?: boolean
     videoUrl?: boolean
     materials?: boolean
   }
 
-  export type LessonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "courseId" | "orderIndex" | "videoUrl" | "materials", ExtArgs["result"]["lesson"]>
+  export type LessonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "courseId" | "lessonOrder" | "videoUrl" | "materials", ExtArgs["result"]["lesson"]>
   export type LessonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | CourseDefaultArgs<ExtArgs>
   }
@@ -4059,11 +4059,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
-      description: string
+      title: string
+      content: string
       courseId: string
-      orderIndex: number
-      videoUrl: string | null
+      lessonOrder: number
+      videoUrl: string
       materials: string | null
     }, ExtArgs["result"]["lesson"]>
     composites: {}
@@ -4490,10 +4490,10 @@ export namespace Prisma {
    */
   interface LessonFieldRefs {
     readonly id: FieldRef<"Lesson", 'String'>
-    readonly name: FieldRef<"Lesson", 'String'>
-    readonly description: FieldRef<"Lesson", 'String'>
+    readonly title: FieldRef<"Lesson", 'String'>
+    readonly content: FieldRef<"Lesson", 'String'>
     readonly courseId: FieldRef<"Lesson", 'String'>
-    readonly orderIndex: FieldRef<"Lesson", 'Int'>
+    readonly lessonOrder: FieldRef<"Lesson", 'Int'>
     readonly videoUrl: FieldRef<"Lesson", 'String'>
     readonly materials: FieldRef<"Lesson", 'String'>
   }
@@ -8166,10 +8166,10 @@ export namespace Prisma {
 
   export const LessonScalarFieldEnum: {
     id: 'id',
-    name: 'name',
-    description: 'description',
+    title: 'title',
+    content: 'content',
     courseId: 'courseId',
-    orderIndex: 'orderIndex',
+    lessonOrder: 'lessonOrder',
     videoUrl: 'videoUrl',
     materials: 'materials'
   };
@@ -8493,22 +8493,22 @@ export namespace Prisma {
     OR?: LessonWhereInput[]
     NOT?: LessonWhereInput | LessonWhereInput[]
     id?: StringFilter<"Lesson"> | string
-    name?: StringFilter<"Lesson"> | string
-    description?: StringFilter<"Lesson"> | string
+    title?: StringFilter<"Lesson"> | string
+    content?: StringFilter<"Lesson"> | string
     courseId?: StringFilter<"Lesson"> | string
-    orderIndex?: IntFilter<"Lesson"> | number
-    videoUrl?: StringNullableFilter<"Lesson"> | string | null
+    lessonOrder?: IntFilter<"Lesson"> | number
+    videoUrl?: StringFilter<"Lesson"> | string
     materials?: StringNullableFilter<"Lesson"> | string | null
     course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
   }
 
   export type LessonOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
     courseId?: SortOrder
-    orderIndex?: SortOrder
-    videoUrl?: SortOrderInput | SortOrder
+    lessonOrder?: SortOrder
+    videoUrl?: SortOrder
     materials?: SortOrderInput | SortOrder
     course?: CourseOrderByWithRelationInput
   }
@@ -8518,22 +8518,22 @@ export namespace Prisma {
     AND?: LessonWhereInput | LessonWhereInput[]
     OR?: LessonWhereInput[]
     NOT?: LessonWhereInput | LessonWhereInput[]
-    name?: StringFilter<"Lesson"> | string
-    description?: StringFilter<"Lesson"> | string
+    title?: StringFilter<"Lesson"> | string
+    content?: StringFilter<"Lesson"> | string
     courseId?: StringFilter<"Lesson"> | string
-    orderIndex?: IntFilter<"Lesson"> | number
-    videoUrl?: StringNullableFilter<"Lesson"> | string | null
+    lessonOrder?: IntFilter<"Lesson"> | number
+    videoUrl?: StringFilter<"Lesson"> | string
     materials?: StringNullableFilter<"Lesson"> | string | null
     course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
   }, "id">
 
   export type LessonOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
     courseId?: SortOrder
-    orderIndex?: SortOrder
-    videoUrl?: SortOrderInput | SortOrder
+    lessonOrder?: SortOrder
+    videoUrl?: SortOrder
     materials?: SortOrderInput | SortOrder
     _count?: LessonCountOrderByAggregateInput
     _avg?: LessonAvgOrderByAggregateInput
@@ -8547,11 +8547,11 @@ export namespace Prisma {
     OR?: LessonScalarWhereWithAggregatesInput[]
     NOT?: LessonScalarWhereWithAggregatesInput | LessonScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Lesson"> | string
-    name?: StringWithAggregatesFilter<"Lesson"> | string
-    description?: StringWithAggregatesFilter<"Lesson"> | string
+    title?: StringWithAggregatesFilter<"Lesson"> | string
+    content?: StringWithAggregatesFilter<"Lesson"> | string
     courseId?: StringWithAggregatesFilter<"Lesson"> | string
-    orderIndex?: IntWithAggregatesFilter<"Lesson"> | number
-    videoUrl?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
+    lessonOrder?: IntWithAggregatesFilter<"Lesson"> | number
+    videoUrl?: StringWithAggregatesFilter<"Lesson"> | string
     materials?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
   }
 
@@ -8939,70 +8939,70 @@ export namespace Prisma {
 
   export type LessonCreateInput = {
     id?: string
-    name: string
-    description: string
-    orderIndex: number
-    videoUrl?: string | null
+    title: string
+    content: string
+    lessonOrder: number
+    videoUrl: string
     materials?: string | null
     course: CourseCreateNestedOneWithoutLessonsInput
   }
 
   export type LessonUncheckedCreateInput = {
     id?: string
-    name: string
-    description: string
+    title: string
+    content: string
     courseId: string
-    orderIndex: number
-    videoUrl?: string | null
+    lessonOrder: number
+    videoUrl: string
     materials?: string | null
   }
 
   export type LessonUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
     course?: CourseUpdateOneRequiredWithoutLessonsNestedInput
   }
 
   export type LessonUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LessonCreateManyInput = {
     id?: string
-    name: string
-    description: string
+    title: string
+    content: string
     courseId: string
-    orderIndex: number
-    videoUrl?: string | null
+    lessonOrder: number
+    videoUrl: string
     materials?: string | null
   }
 
   export type LessonUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LessonUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -9501,40 +9501,40 @@ export namespace Prisma {
 
   export type LessonCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
     courseId?: SortOrder
-    orderIndex?: SortOrder
+    lessonOrder?: SortOrder
     videoUrl?: SortOrder
     materials?: SortOrder
   }
 
   export type LessonAvgOrderByAggregateInput = {
-    orderIndex?: SortOrder
+    lessonOrder?: SortOrder
   }
 
   export type LessonMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
     courseId?: SortOrder
-    orderIndex?: SortOrder
+    lessonOrder?: SortOrder
     videoUrl?: SortOrder
     materials?: SortOrder
   }
 
   export type LessonMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
     courseId?: SortOrder
-    orderIndex?: SortOrder
+    lessonOrder?: SortOrder
     videoUrl?: SortOrder
     materials?: SortOrder
   }
 
   export type LessonSumOrderByAggregateInput = {
-    orderIndex?: SortOrder
+    lessonOrder?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10157,19 +10157,19 @@ export namespace Prisma {
 
   export type LessonCreateWithoutCourseInput = {
     id?: string
-    name: string
-    description: string
-    orderIndex: number
-    videoUrl?: string | null
+    title: string
+    content: string
+    lessonOrder: number
+    videoUrl: string
     materials?: string | null
   }
 
   export type LessonUncheckedCreateWithoutCourseInput = {
     id?: string
-    name: string
-    description: string
-    orderIndex: number
-    videoUrl?: string | null
+    title: string
+    content: string
+    lessonOrder: number
+    videoUrl: string
     materials?: string | null
   }
 
@@ -10255,11 +10255,11 @@ export namespace Prisma {
     OR?: LessonScalarWhereInput[]
     NOT?: LessonScalarWhereInput | LessonScalarWhereInput[]
     id?: StringFilter<"Lesson"> | string
-    name?: StringFilter<"Lesson"> | string
-    description?: StringFilter<"Lesson"> | string
+    title?: StringFilter<"Lesson"> | string
+    content?: StringFilter<"Lesson"> | string
     courseId?: StringFilter<"Lesson"> | string
-    orderIndex?: IntFilter<"Lesson"> | number
-    videoUrl?: StringNullableFilter<"Lesson"> | string | null
+    lessonOrder?: IntFilter<"Lesson"> | number
+    videoUrl?: StringFilter<"Lesson"> | string
     materials?: StringNullableFilter<"Lesson"> | string | null
   }
 
@@ -10639,10 +10639,10 @@ export namespace Prisma {
 
   export type LessonCreateManyCourseInput = {
     id?: string
-    name: string
-    description: string
-    orderIndex: number
-    videoUrl?: string | null
+    title: string
+    content: string
+    lessonOrder: number
+    videoUrl: string
     materials?: string | null
   }
 
@@ -10654,28 +10654,28 @@ export namespace Prisma {
 
   export type LessonUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LessonUncheckedUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LessonUncheckedUpdateManyWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    orderIndex?: IntFieldUpdateOperationsInput | number
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    lessonOrder?: IntFieldUpdateOperationsInput | number
+    videoUrl?: StringFieldUpdateOperationsInput | string
     materials?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

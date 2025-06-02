@@ -39,12 +39,64 @@ type AuthPayload {
   email: String!
 }
 
+type DeleteCourseResponse {
+  success: Boolean!
+  message: String!
+
+}
+
+type CreateLessonResponse {
+  success: Boolean!
+  message: String!
+}
+
+type UpdateLessonResponse {
+  success: Boolean!
+  message: String!
+}
+
+input CreateLessonInput {
+  title: String!
+  content: String!
+  videoUrl: String!
+  lessonOrder: Int!
+  courseId: String!
+  materials: String
+}
+
+input UpdateLessonInput {
+  id: String!
+  title: String!
+  content: String!
+  videoUrl: String!
+  lessonOrder: Int!
+  courseId: String!
+  materials: String
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  total: Int!
+}
+
+type CoursesResponse {
+  courses: [Course!]!
+  pageInfo: PageInfo!
+}
+
+input PaginationInput {
+  take: Int = 6
+  skip: Int = 0
+}
 
 type Mutation {
     userRegister(email: String!, password: String!): AuthPayload!
     userLogin(email: String!, password: String!): AuthPayload!
     createInstructor(name: String!, secondName: String!, phone: String!): String!
     createInstructorRequest(name: String!, secondName: String!, phone: String!, email: String!): InstructorRequestResponse!
+    deleteCourse(courseId: String!): DeleteCourseResponse!
+    createLesson(input: CreateLessonInput!): CreateLessonResponse!
+    updateLesson(input: UpdateLessonInput!): UpdateLessonResponse!
 }
 
 type Query {
@@ -52,16 +104,31 @@ type Query {
     getInstructorsRequests: [InstructorRequest!]!
     getInstructorPendingRequest(email: String!): InstructorRequestResponse!
     getCourseByInstructorId(instructorId: String!): [Course!]!
-    getCourseById(courseId: String!): CourseById!
+    getCourseById(courseId: String!): GetByIdCourseResponse!
+    getLessonsByCourse(courseId: String!): GetLessonsResponse!
+    getLessonById(lessonId: String!): Lesson!
+    getCourses(pagination: PaginationInput): CoursesResponse!
 }
 
-type CourseById {
+type GetLessonsResponse {
+  lessons: [Lesson!]!
+  success: Boolean!
+  message: String!
+}
+
+type Lesson {
+  id: String!
   title: String!
-  description: String!
-  price: Float!
-  hours: Int!
-  image: String!
-  isActive: Boolean!
+  content: String!
+  videoUrl: String!
+  lessonOrder: Int!
+  courseId: String!
+  materials: String
+}
+
+type GetByIdCourseResponse {
+  course: Course
+  lessons: [Lesson!]!
 }
 
 type Course {

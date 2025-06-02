@@ -8,6 +8,7 @@ import { InstructorModule } from './instructor/instructor.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { CourseModule } from './course/course.module';
 import { ConfigModule } from '@nestjs/config';
+import { LessonModule } from './lesson/lesson.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,6 +28,7 @@ import { ConfigModule } from '@nestjs/config';
     InstructorModule,
     GatewayModule,
     CourseModule,
+    LessonModule,
   ],
   providers: [PrismaService],
 })

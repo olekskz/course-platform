@@ -1,5 +1,5 @@
 import { IsOptional, IsString, IsNumber, IsBoolean, IsPositive } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 
 export class UpdateCourseDto {
 
@@ -8,35 +8,38 @@ export class UpdateCourseDto {
 
   @IsOptional()
   @IsString()
-  title?: string;
+  title: string;
 
   @IsOptional()
   @IsString()
-  description?: string;
+  description: string;
 
-  @IsOptional()
+  
   @IsNumber({ maxDecimalPlaces: 2 })
   @IsPositive()
   @Type(() => Number)
-  price?: number;
+  price: number;
 
-  @IsOptional()
+  
   @IsNumber()
   @Type(() => Number)
-  hours?: number;
+  hours: number;
 
   @IsOptional()
   @IsString()
-  image?: string;
+  image: string;
 
-  @IsOptional()
   @IsBoolean()
-  @Type(() => Boolean)
-  isActive?: boolean;
+  @Transform(({ value }) => {
+        if (value === 'true') return true;
+        if (value === 'false') return false;
+        return value;
+    })
+    isActive: boolean;
 
   @IsOptional()
   @IsString()
-  instructorId?: string;
+  instructorId: string;
 
   
 }

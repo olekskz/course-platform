@@ -6,14 +6,33 @@ import Image from "next/image"
 import { useGetCourseById } from "@/hooks/useCourse"
 import { useParams } from "next/navigation"
 import { useUpdateCourse } from "@/hooks/useCourse"
+import CourseDeleteModal from "@/components/modals/courseDeleteModal"
+import { useGetLessons } from "@/hooks/useLesson"
+import Footer from "@/components/footer"
+import { useMemo } from 'react';
 
-type Lesson = {
-    id: string;
-    title: string;
-    order: number;
+interface Lesson {
+  id: string;
+  title: string;
+  lessonOrder: number;
+  content: string;
+  videoUrl: string;
+  materials?: string;
+  courseId: string;
+}
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  hours: number;
+  isActive: boolean;
 }
 
 
+ 
 export default function EditCoursePage() {
     const { courseId } = useParams<{courseId: string}>()
     const [title, setTitle] = useState<string>("")
@@ -23,19 +42,18 @@ export default function EditCoursePage() {
     const [image, setImage] = useState<File | null>(null)
     const [imagePreview, setImagePreview] = useState<string>("/assets/default-image")
     const [isActive, setIsActive] = useState<boolean>(false)
-    const [lessons, setLessons] = useState<Lesson[]>([])
-    
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const { courseData, courseError, courseLoading } = useGetCourseById(courseId)
-    
 
     useEffect(() => {
-        if (courseData?.getCourseById) {
-            setTitle(courseData.getCourseById.title || "")
-            setDescription(courseData.getCourseById.description || "")
-            setPrice(courseData.getCourseById.price?.toString() || "0")
-            setHours(courseData.getCourseById.hours?.toString() || "0")
-            setImagePreview(courseData.getCourseById.image || "/assets/default-image")
-            setIsActive(!!courseData.getCourseById.isActive)
+        if (courseData?.getCourseById?.course) {
+            const { course } = courseData.getCourseById;
+            setTitle(course.title)
+            setDescription(course.description)
+            setPrice(course.price?.toString() || "0")
+            setHours(course.hours?.toString() || "0")
+            setImagePreview(course.image)
+            setIsActive(course.isActive)
         }
     }, [courseData]) 
 
@@ -87,10 +105,38 @@ export default function EditCoursePage() {
         }
     }
 
-    if (courseLoading) return <div>Loading...</div>;
-    if (courseError) return <div>Error: {courseError}</div>;
+    const sortedLessons = useMemo(() => {
+        if (!courseData?.getCourseById?.lessons) return [];
+        return [...courseData.getCourseById.lessons].sort((a, b) => a.lessonOrder - b.lessonOrder);
+    }, [courseData?.getCourseById?.lessons]);
+
+    if (courseLoading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-xl">Loading...</div>
+            </div>
+        );
+    }
+
+    if (courseError) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-xl text-red-500">Error: {courseError.message}</div>
+            </div>
+        );
+    }
+
+    if (!courseData?.getCourseById?.course) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-xl">Course not found</div>
+            </div>
+        );
+    }
+
 
     return (
+        <>
         <div className="min-h-screen bg-gray-50">
             <div className="container mx-auto px-4 py-8">
                 {/* Header with navigation */}
@@ -136,7 +182,7 @@ export default function EditCoursePage() {
                                                 setDescription(e.target.value)
                                             }
                                         }}
-                                        rows={4}
+                                        rows={7}
                                         maxLength={500}
                                         className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
@@ -172,18 +218,45 @@ export default function EditCoursePage() {
 
                         {/* Lessons section */}
                         <div className="bg-white p-6 rounded-lg shadow-sm">
-                            <h2 className="text-xl font-semibold mb-4">Course Content</h2>
+                            <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-xl font-semibold">Course Content</h2>
+                                <span className="text-sm text-gray-500">
+                                    {sortedLessons.length} {sortedLessons.length === 1 ? 'lesson' : 'lessons'}
+                                </span>
+                            </div>
                             <div className="space-y-4">
-                                {lessons.map((lesson, index) => (
-                                    <div key={lesson.id} className="flex items-center p-3 bg-gray-50 rounded-md">
-                                        <span className="mr-4 text-gray-500">{index + 1}</span>
-                                        <span className="flex-grow">{lesson.title}</span>
-                                        <button className="text-gray-500 hover:text-gray-700">Edit</button>
+                                {sortedLessons.length > 0 ? (
+                                    sortedLessons.map((lesson) => (
+                                        <div 
+                                            key={lesson.id} 
+                                            className="flex items-center p-4 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors"
+                                        >
+                                            <span className="mr-4 w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full">
+                                                {lesson.lessonOrder}
+                                            </span>
+                                            <span className="flex-grow font-medium">{lesson.title}</span>
+                                            <Link 
+                                                href={`/dashboard/instructor/courses/${courseId}/lessons/create/edit/${lesson.id}`}
+                                                className="text-gray-500 hover:text-blue-600 transition-colors"
+                                            >
+                                                Edit
+                                            </Link>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="text-center py-8 text-gray-500">
+                                        No lessons added yet
                                     </div>
-                                ))}
-                                <button className="w-full py-3 border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:text-gray-700 hover:border-gray-400">
-                                    + Add Lesson
-                                </button>
+                                )}
+                                <Link 
+                                    href={`/dashboard/instructor/courses/${courseId}/lessons/create`}
+                                    className="flex items-center justify-center w-full py-4 border-2 border-dashed border-gray-300 rounded-md text-gray-600 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 transition-all"
+                                >
+                                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                    Add New Lesson
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -243,7 +316,18 @@ export default function EditCoursePage() {
                                         </button>
                                     </div>
                                 </div>
-                                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mt-4">
+                                <button className="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors mt-4 cursor-pointer"
+                                    onClick={() =>  setIsDeleteModalOpen(true)}
+                                    type="button"
+                                >
+                                    Delete Course
+                                </button>
+                                <CourseDeleteModal 
+                                    isOpen={isDeleteModalOpen} 
+                                    onClose={() => setIsDeleteModalOpen(false)} 
+                                    courseId={courseId}
+                                />
+                                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors cursor-pointer">
                                     Save Changes
                                 </button>
                             </div>
@@ -252,5 +336,7 @@ export default function EditCoursePage() {
                 </form>
             </div>
         </div>
+        <Footer />
+        </>
     )
 }

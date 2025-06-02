@@ -49,12 +49,12 @@ model Course {
 
 model Lesson {
   id          String  @id @default(cuid())
-  name        String
-  description String
+  title       String
+  content     String  @db.VarChar(1000)
   courseId    String
   course      Course  @relation(fields: [courseId], references: [id])
-  orderIndex  Int
-  videoUrl    String?
+  lessonOrder Int
+  videoUrl    String
   materials   String?
 
   @@map("lessons")

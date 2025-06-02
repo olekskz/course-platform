@@ -22,8 +22,6 @@ export class CourseController {
         @Body() createCourseDto: CreateCourseDto) {
         try {
             const image = await this.cloudinaryService.uploadImage(file.buffer);
-            console.log(image.url)
-            console.log(image.public_id)
             if (image) {
                 const course = await this.courseService.createCourse(
                     createCourseDto,
@@ -53,8 +51,8 @@ async updateCourse(
     let uploadedImage: { url: string; public_id: string; } | null = null;
     
     if (file) {
-      if (existingCourse.image_public_id) {
-        await this.cloudinaryService.deleteImage(existingCourse.image_public_id);
+      if (existingCourse.course?.image_public_id) {
+        await this.cloudinaryService.deleteImage(existingCourse.course.image_public_id);
       }
       uploadedImage = await this.cloudinaryService.uploadImage(file.buffer);
     }
@@ -65,8 +63,9 @@ async updateCourse(
       price: updateCourseDto.price,
       hours: updateCourseDto.hours,
       isActive: updateCourseDto.isActive,
-      image: uploadedImage ? uploadedImage.url : existingCourse.image,
-      image_public_id: uploadedImage ? uploadedImage.public_id : existingCourse.image_public_id
+      image: uploadedImage ? uploadedImage.url : (existingCourse.course?.image ?? ''),
+      image_public_id: uploadedImage ? uploadedImage.public_id : (existingCourse.course?.image_public_id ?? ''),
+      instructorId: updateCourseDto.instructorId
     };
 
     await this.courseService.updateCourse(updateCourseDto.id, courseData);
